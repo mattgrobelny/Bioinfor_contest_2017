@@ -21,25 +21,21 @@
 # put your python code here
 
 
+import sys
+
+
 def where_substring(string, substring):
-    start_locations = []
+    start_locations = ""
     for i in range(len(string)):
         if string[i:i + len(substring)] == substring:
-            start_locations.append(i + 1)
+            start_locations = start_locations + str(i + 1) + ' '
         else:
             continue
-    return(start_locations)
+    return(start_locations[0:-1])
 
 
-stri = 'GATATATGCATATACTT'
-sub = 'ATAT'
-print(where_substring(stri, sub))
-
-
-import re
-
-
-def find_motif(seq, motif):
-    return [match.start() + 1 for match in re.finditer(r'(?=%s)' % re.escape(motif), seq)]
-
-print find_motif('GATATATGCATATACTT', 'ATAT')
+s = sys.stdin.readline()
+t = sys.stdin.readline()
+s = s.strip('\n')
+t = t.strip('\n')
+print(where_substring(s, t))
